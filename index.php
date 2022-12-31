@@ -1,0 +1,172 @@
+<?php
+    session_start();
+    include_once('config.php');
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gleam | Source For PC Games</title>
+        <link rel="shortcut icon" href="assets/logo.png" />
+        <link rel="stylesheet" href="css/style.css">
+        <link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/flickity.css">
+        <script src="https://use.fontawesome.com/836bb0b6ce.js"></script>
+        <script src="js/flickity.pkgd.js"></script>
+    </head>
+    <body>
+        <div class="hero">
+<section class="header">
+    <nav>
+        <a href="index.html"><img src="assets/logo.png"></a>
+        <div class="nav-links">
+            <a class="current" href="index.php">Home</a>
+            <a href="#">Community</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+    <div class="carousel-menu">
+        <div class="menu">
+        <a class="current" href="index.php">Discover</a>
+        <a href="#">Browse</a>
+        </div>
+        <input type="text" placeholder="Search..." name="search"><button>
+            <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+          </button>
+    </div>
+    <section class="type-a">
+        <div class="slider">
+          <div class="slide slide-1 active">
+            <div class="detail">
+              <h2>Little Nighmare II</h2>
+              <p style="margin-bottom: -15px; margin-top: 0px;">Return to a world of charming horror in Little Nightmares II, 
+                a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by the humming transmission of a distant tower.</p>
+                <p>$29.99</p>
+              <button class="buy-btn"><a href="item.php?ProID=11">Buy Now</a></button>
+            </div>
+          </div>
+          <div class="slide slide-2">
+            <div class="detail">
+                <h2>Monster Hunter Stories 2: Wings of Ruin</h2>
+                <p>A new adventure awaits you in this second installment of the turn-based RPG series 
+                    set in the world of Monster Hunter! Become a Rider and form bonds with friendly monsters known as Monsties to fight alongside them as you take part in an epic story.</p>
+                  <p>$59.99</p>
+                <button class="buy-btn"><a href="item.php?ProID=13">Buy Now</a></button>
+              </div>
+          </div>
+          <div class="slide slide-3">
+            <div class="detail">
+                <h2>Back 4 Blood</h2>
+                <p>You are at the center of a war against the Ridden. With humanity's extinction on the line, it's up to you and your friend
+                    s to take the fight to the enemy, eradicate the Ridden, and reclaim the world.</p>
+                  <p>$59.99</p>
+                <button class="buy-btn"><a href="item.php?ProID=9">Buy Now</a></button>
+              </div>
+          </div>
+          <div class="slide slide-4">
+            <div class="detail">
+                <h2>New World</h2>
+                <p>Explore a thrilling, open-world MMO filled with danger and opportunity where you'll forge a new destiny for yourself as an adventurer
+                     shipwrecked on the supernatural island of Aeternum.</p>
+                  <p>$29.99</p>
+                <button class="buy-btn"><a href="item.php?ProID=12">Buy Now</a></button>
+              </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="next">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+            </ion-icon>
+          </div>
+          <div class="prev">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-icon>
+          </div>
+        </div>
+        <div class="dots"></div>
+    </section>
+</section>
+<section class="products">
+  <h3 style="margin-left: 32px; font-size: 18px;" >Games On Sale</h3>
+  <section class="card-container">
+  <?php
+                    $query = "SELECT * FROM tbl_product ORDER BY id ASC";
+                    $result = mysqli_query($connect, $query);
+                    if(mysqli_num_rows($result) > 0)
+                    {
+                        while($row = mysqli_fetch_array($result))
+                    {
+                ?>
+    <div class="product-card" >
+      <a href="item.php?ProID=<?php echo $row["id"]; ?>">
+        <div class="product-img">
+        <img class="card-img" src="images/<?php echo $row["image"]; ?>">
+        </div>
+        <div class="product-info">
+          <div class="title">
+            <p><?php echo $row["name"]; ?></p>
+            <p id="genre"><?php echo $row["category"]; ?></p>
+          </div>
+          <p class="price">$ <?php echo $row["price"]; ?></p>
+        </div>
+      </a>
+    </div>
+    <?php
+					}
+				}
+			?>
+  </section>
+</section>
+    </div>
+    <div class="footer-container">
+      <div class="footer">
+        <div class="footer-heading footer-1">
+          <h2>About Us</h2>
+          <a href="#">Home</a>
+          <a href="#">Services</a>
+          <a href="#">FAQ</a>
+          <a href="#">Term of Services</a>
+        </div>
+        <div class="footer-heading footer-2">
+          <h2>Social Media</h2>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Youtube</a>
+          <a href="#">Twitter</a>
+        </div>
+        <div class="footer-email-form">
+          <h2>Newsletter</h2>
+          <p>Subscribe to our mailing list to receive updates on new <br>arrivals, special offers and other discount information.</p>
+          <input type="email" placeholder="Enter your email address" id="footer-email">
+          <input type="submit" value="Sign Up" id="footer-email-btn">
+        </div>
+      </div>
+      <div class="small-footer">
+        <div class="small-footer-container">
+          <div class="copyright">
+            <p>Copyright &copy; 2021 <span>Gleam.</span> All Rights Reserved.</p>
+          </div>
+          <div class="social">
+            <a href="#" class="fa fa-twitter fa-4x icon-3d" style="font-size: 20px"></a>
+            <a href="#" class="fa fa-facebook fa-4x icon-3d" style="font-size: 20px"></a>
+            <a href="#" class="fa fa-instagram fa-4x icon-3d" style="font-size: 20px"></a>
+            <a href="#" class="fa fa-youtube fa-4x icon-3d" style="font-size: 20px"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!--<div class="blood">
+            <img src="assets/blood.png">
+            <img src="assets/blood.png">
+            <img src="assets/blood.png">
+            <img src="assets/blood.png">
+            <img src="assets/blood.png">
+            <img src="assets/blood.png">
+            <img src="assets/blood.png">
+        </div>-->
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+    </body>
+</html>
